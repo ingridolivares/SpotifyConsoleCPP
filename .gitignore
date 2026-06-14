@@ -1,0 +1,23 @@
+# Compiled Files
+build/
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Object Files
+*.o
+*.obj
+
+# Debug Files
+*.dSYM/
+
+# Temporary Files
+*.tmp
+
+# VS Code Configuration
+.vscode/
+
+# macOS
+.DS_Store
