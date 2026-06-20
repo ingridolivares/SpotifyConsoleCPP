@@ -30,6 +30,8 @@ class Song{
         void setLiked(bool liked);
 
         void increasePlayCount();
+
+        int getPlayCount();
 };
 
 #endif
