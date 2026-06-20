@@ -1,20 +1,21 @@
 #include "UI.h"
 #include <iostream>
+#include <cctype>
 
 using namespace std;
 
 void ui::separator(){
-    cout << "\n---------------------------------\n";
+    std::cout << "\n---------------------------------\n";
 }
 
 void ui::doubleSeparator(){
-    cout << "\n=================================\n";
+    std::cout << "\n=================================\n";
 }
 
 void ui::pause(){
-    cout << "\tPresione ENTER para continuar . . .";
-    cin.ignore();
-    cin.get();
+    std::cout << "\tPresione ENTER para continuar . . .";
+    std::cin.ignore();
+    std::cin.get();
 }
 
 void ui::clear(){
@@ -27,7 +28,14 @@ void ui::clear(){
 
 void ui::title(const string& text){
     ui::doubleSeparator();
-    cout << "\t" << text << "\t";
+    std::cout << "\t" << text << "\t";
     ui::doubleSeparator();
+}
+
+std::string utils::toLower(std::string text){
+    for(char& c : text){
+        c = std::tolower(c);
+    }
+    return text;
 }
 

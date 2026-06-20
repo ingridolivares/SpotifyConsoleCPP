@@ -4,7 +4,7 @@ int main(){
     Playlist playlist;
     
     Song s1("Numb",
-            "Linking Park",
+            "Linkin Park",
             "lyrics/numb.txt",
             "audio/numb.mp3");
 

@@ -10,4 +10,9 @@ namespace ui{
     void clear();
     void title(const std::string&text);
 }
+
+namespace utils{
+    std::string toLower(std::string text);
+}
+
 #endif
