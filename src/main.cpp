@@ -1,4 +1,5 @@
 #include "Playlist.h"
+#include "User.h"
 
 int main(){
     Playlist playlist;
