@@ -26,9 +26,71 @@ void Playlist::addSong(Song song){
 void Playlist::printSongs(){
     Node *aux = head;
 
-    while(aux != nullptr){
-        std::cout << aux -> data.getTitle() << " - " << aux -> data.getArtist() << std::endl;
-        aux = aux -> next;
+    if(aux == nullptr){
+        std::cout << "(!) No hay canciones para mostrar" << std::endl;
+    }
+    else{
+        while(aux != nullptr){
+            std::cout << aux -> data.getTitle() << " - " << aux -> data.getArtist() << std::endl;
+            aux = aux -> next;
+        }
+    }
+}
+
+void Playlist::removeSong(std::string title){
+    Node *aux = head, *aux2, *aux3;
+    
+    if(aux == nullptr){
+        std::cout << "(!) No hay canciones para eliminar" << std::endl;
+    }
+    else{
+        while(aux != nullptr){
+            if(
+                utils::toLower(aux -> data.getTitle())
+                ==
+                utils::toLower(title)
+                )
+                {
+                    if(head == tail){
+                        delete head;
+                        head = nullptr;
+                        tail = nullptr;
+                        return;
+                    }
+                    else{
+                        if(aux == head)
+                        {
+                            head = head -> next;
+                            head -> prev = nullptr;
+                            aux -> next = nullptr;
+                            delete aux;
+                            return;
+                        }
+                        else{
+                            if(aux == tail)
+                            {
+                                tail = tail -> prev;
+                                tail -> next = nullptr;
+                                aux -> prev = nullptr;
+                                delete aux;
+                                return;
+                            }
+                            else{
+                                aux2 = aux -> prev;
+                                aux3 = aux -> next;
+                                aux2 -> next = aux3;
+                                aux3 -> prev = aux2;
+                                aux -> next = nullptr;
+                                aux -> prev = nullptr;
+                                delete aux;
+                                return;
+                            }
+                        }
+                    }
+                }
+                aux = aux -> next;
+        }
+        std::cout << "(!) No se encontro la cancion a eliminar" << std::endl;
     }
 }
 

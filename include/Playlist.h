@@ -12,6 +12,7 @@ class Playlist{
         Playlist();
         void addSong(Song song);
         void printSongs();
+        void removeSong(std::string title);
         void searchArtist(std::string artis);
         Song* searchSong(std::string title);
 };
