@@ -15,4 +15,6 @@ class User{
         std::string getPassword();
 };
 
+User *login(User user[], int size);
+
 #endif

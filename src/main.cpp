@@ -1,7 +1,25 @@
+#include <iostream>
 #include "Playlist.h"
 #include "User.h"
+#include "UI.h"
 
 int main(){
+    User users[5] = {
+        User("Abigail Brooks", "1234"),
+        User("Grant Best", "2345"),
+        User("Leeroy Mateo", "9876"),
+        User("Riley Verselis", "3456"),
+        User("Zoey Raghavan", "7890")
+    };
+    User* currentUser = login(users, 5);
+    if(currentUser == nullptr){
+    return 0;
+    }
+    ui::clear();
+    ui::doubleSeparator();
+    std::cout << "Bienvenido " << currentUser -> getUsername() << "!";
+    ui::doubleSeparator();
+
     Playlist playlist;
     
     Song s1("Numb",
