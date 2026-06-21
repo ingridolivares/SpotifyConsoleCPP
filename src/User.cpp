@@ -1,5 +1,6 @@
 #include <string>
 #include "User.h"
+#include "Catalog.h"
 
 User::User(){
     username = "";
