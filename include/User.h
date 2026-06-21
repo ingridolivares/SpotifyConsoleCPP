@@ -22,6 +22,6 @@ class User{
         Playlist& getMyMix();
 };
 
-void loadDefaultPlaylist(User users[], Song songs[]);
+void loadDefaultPlaylist(User users[], Song catalog[]);
 
 #endif

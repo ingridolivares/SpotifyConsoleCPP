@@ -8,7 +8,7 @@ void additionalMenu(User*, Song*);
 
 int main(){
         Playlist playlist;
-        
+
         Song s1("Across the Universe","The Beatles","lyrics/acrosstheuniverse.txt","audio/acrosstheuniverse.mp3");
 
         Song s2("All I Wanted","Paramore","lyrics/alliwanted.txt","audio/alliwanted.mp3");
@@ -128,21 +128,31 @@ int main(){
         Song s59("Wish You Were Here","Pink Floyd","lyrics/whishyouwerehere.txt","audio/whishyouwerehere.mp3");
 
         Song s60("You're Gonna Go Far, Kid","The Offspring","lyrics/youregonnagofarkid.txt","audio/youregonnagofarkid.mp3");
-    
-        playlist.addSong(s1);
-        playlist.addSong(s2);
-        playlist.addSong(s3);
-        playlist.addSong(s4);
-        playlist.addSong(s5);
-        playlist.addSong(s6);
 
-        User users[5] = {
+        Song catalog[60] = {s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,
+                        s11,s12,s13,s14,s15,s16,s17,s18,s19,s20,
+                        s21,s22,s23,s24,s25,s26,s27,s28,s29,s30,
+                        s31,s32,s33,s34,s35,s36,s37,s38,s39,s40,
+                        s41,s42,s43,s44,s45,s46,s47,s48,s49,s50,
+                        s51,s52,s53,s54,s55,s56,s57,s58,s59,s60};
+
+        int catalogSize = sizeof(catalog) / sizeof(catalog[0]);
+
+        for(int i = 0; i < catalogSize; i++){
+                playlist.addSong(catalog[i]);
+        }
+
+        User users[6] = {
                 User("Abigail Brooks", "1234"),
                 User("Grant Best", "2345"),
                 User("Leeroy Mateo", "9876"),
                 User("Riley Verselis", "3456"),
-                User("Zoey Raghavan", "7890")
+                User("Zoey Raghavan", "7890"),
+                User("Suzie Jay Ackerman", "8901")
         };
+
+        loadDefaultPlaylist(users, catalog);
+
         User* currentUser = login(users, 5);
         if(currentUser == nullptr){
                 return 0;
@@ -258,29 +268,36 @@ int main(){
 
 void additionalMenu(User* currentUser, Song* foundSong){
         int option;
-        ui::title("OPCIONES");
-        std::cout << "1. Reproducir\n";
-        std::cout << "2. Agregar a My Mix\n";
-        std::cout << "3. Me gusta ♥\n";
-        std::cout << "0. Volver\n";
-        std::cin >> option;
+        while(1){
+                ui::title("OPCIONES");
+                std::cout << "1. Reproducir\n";
+                std::cout << "2. Agregar a My Mix\n";
+                std::cout << "3. Me gusta ♥\n";
+                std::cout << "0. Volver\n";
+                std::cout << "Selecciona una opcion\n";
+                std::cin >> option;
 
-        switch(option){
-                case 1:
-                        std::cout << "Reproduciendo: "
-                                << foundSong -> getTitle()
-                                << std::endl;
-                break;
-                case 2:
-                        currentUser -> getMyMix().addSong(*foundSong);
-                        std::cout << "Cancion agregada a Mi MIX\n";
-                break;
-                case 3:
-                        currentUser -> getLikedSongs().addSong(*foundSong);
-                        std::cout << "Cancion agregada a Me Gusta ♥\n";
-                break;
-                case 0:
-                        return;
-                break;
+                switch(option){
+                        case 1:
+                                std::cout << "Reproduciendo: "
+                                        << foundSong -> getTitle()
+                                        << std::endl;
+                        break;
+                        case 2:
+                                currentUser -> getMyMix().addSong(*foundSong);
+                                std::cout << "Cancion agregada a Mi MIX\n";
+                        break;
+                        case 3:
+                                currentUser -> getLikedSongs().addSong(*foundSong);
+                                std::cout << "Cancion agregada a Me Gusta ♥\n";
+                        break;
+                        case 0:
+                                return;
+                        break;
+                        default:
+                                std::cout << "(!) Opcion invalida\n";
+                                return;
+                        break;
+                }
         }
 }
