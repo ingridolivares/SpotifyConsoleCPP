@@ -2,6 +2,7 @@
 #include "Playlist.h"
 #include "User.h"
 #include "UI.h"
+#include "Authentication.h"
 
 int main(){
     User users[5] = {
