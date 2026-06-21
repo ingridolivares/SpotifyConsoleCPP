@@ -114,7 +114,7 @@ int main(){
         Song s53("The Sound of Silence","Simon & Garfunkel","lyrics/thesoundofsilence.txt","audio/thesoundofsilence.mp3");
 
         Song s54("Three Little Birds","Bob Marley","lyrics/threelittlebirds.txt","audio/threelittlebirds.mp3");
-        
+
         Song s55("Time","Pink Floyd","lyrics/time.txt","audio/time.mp3");
 
         Song s56("Unintended","Muse","lyrics/unintended.txt","audio/unintended.mp3");
@@ -146,6 +146,8 @@ int main(){
                 return 0;
         }
         int option;
+        std::string title, artist;
+        Song* foundSong = nullptr;
         ui::clear();
         ui::separator();
         std::cout << "¡Bienvenid@ " << currentUser -> getUsername() << "!";
@@ -185,9 +187,31 @@ int main(){
                         break;
 
                         case 2:
+                                ui::clear();
+                                ui::title("BUSQUEDA DE CANCIÓN");
+                                std::cin.ignore(1000, '\n');
+                                std::cout << "Ingrese el titulo: ";
+                                getline(std::cin, title);
+                                foundSong = playlist.searchSong(title);
+                                if(foundSong != nullptr){
+                                        std::cout << foundSong -> getTitle()
+                                                << " - "
+                                                << foundSong -> getArtist()
+                                                << std::endl;
+                                }
+                                else{
+                                        std::cout << "(!) La cancion no fue encontrada\n";
+                                }
                         break;
 
                         case 3:
+                                ui::clear();
+                                ui::title("BUSQUEDA POR ARTISTA");
+                                std::cin.ignore(1000, '\n');
+                                std::cout << "Ingrese el numbre del artista: ";
+                                getline(std::cin, artist);
+                                playlist.searchArtist(artist);
+                                ui::pause();
                         break;
 
                         case 4:
