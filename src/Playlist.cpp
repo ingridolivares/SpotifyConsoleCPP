@@ -25,14 +25,16 @@ void Playlist::addSong(Song song){
 
 void Playlist::printSongs(){
     Node *aux = head;
+    int songnumber = 1;
 
     if(aux == nullptr){
         std::cout << "(!) No hay canciones para mostrar" << std::endl;
     }
     else{
         while(aux != nullptr){
-            std::cout << aux -> data.getTitle() << " - " << aux -> data.getArtist() << std::endl;
+            std::cout << songnumber << ". " << aux -> data.getTitle() << " - " << aux -> data.getArtist() << std::endl;
             aux = aux -> next;
+            songnumber ++;
         }
     }
 }
@@ -131,6 +133,3 @@ Song* Playlist::searchSong(std::string title){
     }
     return nullptr;
 }
-
-
-

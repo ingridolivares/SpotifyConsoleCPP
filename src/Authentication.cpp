@@ -9,6 +9,7 @@ User *login(User users[], int size){
     std::string password;
     int attempts = 0;
     while(attempts < 3){
+        ui::clear();
         ui::title("INICIO DE SESION");
         std::cout << "Usuario: ";
         getline(std::cin, username);
@@ -26,12 +27,15 @@ User *login(User users[], int size){
             }
         }
         attempts ++;
-        std::cout << "(!) Usuario o contrasenia inválidos" << std::endl;
-        std::cout << "Quedan " << 3 - attempts << " intentos para iniciar sesion" << std::endl;
-        ui::pause();
-    }
-    if(attempts == 3){
-        std::cout << "(!) Se ha excedido el numero de intentos máximo de inicio de sesion" << std::endl;
+        std::cout << "\n\t(!) Usuario o contrasenia inválidos" << std::endl;
+        if(attempts != 3){
+            std::cout << "\nQuedan " << 3 - attempts << " intentos para iniciar sesion" << std::endl;
+            ui::pause();
+        }
+        else{
+            std::cout << "\n(!) Se ha excedido el numero de intentos máximo de inicio de sesion" << std::endl;
+        return nullptr;
+        }
     }
     return nullptr;
 }

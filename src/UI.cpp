@@ -14,7 +14,6 @@ void ui::doubleSeparator(){
 
 void ui::pause(){
     std::cout << "\tPresione ENTER para continuar . . .";
-    std::cin.ignore();
     std::cin.get();
 }
 
@@ -38,4 +37,3 @@ std::string utils::toLower(std::string text){
     }
     return text;
 }
-
