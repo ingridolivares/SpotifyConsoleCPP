@@ -18,3 +18,11 @@ std::string User::getUsername(){
 std::string User::getPassword(){
     return password;
 }
+
+Playlist& User::getLikedSongs(){
+    return likedSongs;
+}
+
+Playlist& User::getMyMix(){
+    return myMix;
+}

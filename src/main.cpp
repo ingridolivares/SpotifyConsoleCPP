@@ -4,6 +4,8 @@
 #include "UI.h"
 #include "Authentication.h"
 
+void additionalMenu(User*, Song*);
+
 int main(){
         Playlist playlist;
         
@@ -154,13 +156,14 @@ int main(){
         ui::separator();
         while(1){
                 ui::title("OPCIONES");
+                std::cout << "♥  ♡" << std::endl;
                 std::cout << "1. Mostrar canciones\n";
                 std::cout << "2. Buscar cancion\n";
                 std::cout << "3. Buscar artista\n";
                 std::cout << "4. Reproducir cancion\n";
                 std::cout << "5. Reproduccion aleatoria\n";
                 std::cout << "6. Reproducir todas\n";
-                std::cout << "7. Me gusta\n";
+                std::cout << "7. Me gusta ♥\n";
                 std::cout << "8. " << currentUser -> getUsername() << " MIX\n";
                 std::cout << "9. Eliminar cancion\n";
                 std::cout << "0. Salir\n";
@@ -198,6 +201,9 @@ int main(){
                                                 << " - "
                                                 << foundSong -> getArtist()
                                                 << std::endl;
+                                        additionalMenu(currentUser, foundSong);
+                                        std::cin.ignore(1000, '\n');
+                                        ui::pause();
                                 }
                                 else{
                                         std::cout << "(!) La cancion no fue encontrada\n";
@@ -211,6 +217,7 @@ int main(){
                                 std::cout << "Ingrese el numbre del artista: ";
                                 getline(std::cin, artist);
                                 playlist.searchArtist(artist);
+                                std::cin.ignore(1000, '\n');
                                 ui::pause();
                         break;
 
@@ -224,9 +231,22 @@ int main(){
                         break;
 
                         case 7:
+                                ui::clear();
+                                ui::title("ME GUSTA");
+                                currentUser -> getLikedSongs().printSongs();
+                                std::cin.ignore(1000, '\n');
+                                ui::pause();
                         break;
 
                         case 8:
+                                ui::clear();
+                                ui::doubleSeparator();
+                                std::cout << "\t" << currentUser -> getUsername() << " MIX\t";
+                                ui::doubleSeparator();
+                                currentUser -> getMyMix().printSongs();
+                                std::cin.ignore(1000, '\n');
+                                ui::pause();
+                                ui::clear();
                         break;
 
                         case 9:
@@ -234,4 +254,33 @@ int main(){
                 }
         };
         return 0;
+}
+
+void additionalMenu(User* currentUser, Song* foundSong){
+        int option;
+        ui::title("OPCIONES");
+        std::cout << "1. Reproducir\n";
+        std::cout << "2. Agregar a My Mix\n";
+        std::cout << "3. Me gusta ♥\n";
+        std::cout << "0. Volver\n";
+        std::cin >> option;
+
+        switch(option){
+                case 1:
+                        std::cout << "Reproduciendo: "
+                                << foundSong -> getTitle()
+                                << std::endl;
+                break;
+                case 2:
+                        currentUser -> getMyMix().addSong(*foundSong);
+                        std::cout << "Cancion agregada a Mi MIX\n";
+                break;
+                case 3:
+                        currentUser -> getLikedSongs().addSong(*foundSong);
+                        std::cout << "Cancion agregada a Me Gusta ♥\n";
+                break;
+                case 0:
+                        return;
+                break;
+        }
 }
