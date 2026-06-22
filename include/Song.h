@@ -24,6 +24,8 @@ class Song{
 
         std::string getTitle();
         std::string getArtist();
+        std::string getLyricsPath();
+        std::string getAudioPath();
 
         bool isLiked();
 

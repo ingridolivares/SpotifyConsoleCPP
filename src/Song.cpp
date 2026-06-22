@@ -49,3 +49,11 @@ void Song::increasePlayCount(){
 int Song::getPlayCount(){
     return playCount;
 }
+
+std::string Song::getLyricsPath(){
+    return lyricsPath;
+}
+
+std::string Song::getAudioPath(){
+    return audioPath;
+}
